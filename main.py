@@ -1,17 +1,9 @@
 def parse(query: str) -> dict:
-        try:
-            list = (query.split("?")[1]).split("&")
-        except IndexError:
-            return {}
+        from urllib import parse
         tmp_dict = {}
-        for i in list:
-            tmp_list = i.split("=", 1)
-            try:
-                tmp_dict.update({tmp_list[0]: tmp_list[1]})
-            except IndexError:
-                break
-
+        tmp_dict.update(parse.parse_qsl(parse.urlparse(query)[4]))
         return tmp_dict
+
 
 if __name__ == '__main__':
     assert parse('https://example.com/path/to/page?name=ferret&color=purple') == {'name': 'ferret', 'color': 'purple'}
