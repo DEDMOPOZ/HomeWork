@@ -1,16 +1,8 @@
 def parse(query: str) -> dict:
+        parce_urllib_branch
+        from urllib import parse
         tmp_dict = {}
-        try:
-            list = (query.split("?")[1]).split("&")
-        except IndexError:
-            return {}
-        for i in list:
-            tmp_list = i.split("=", 1)
-            try:
-                tmp_dict.update({tmp_list[0]: tmp_list[1]})
-            except IndexError:
-                break
-
+        tmp_dict.update(parse.parse_qsl(parse.urlparse(query)[4]))
         return tmp_dict
 
 
