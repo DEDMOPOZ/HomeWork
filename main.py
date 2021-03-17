@@ -1,5 +1,4 @@
 def parse(query: str) -> dict:
-        parce_urllib_branch
         from urllib import parse
         tmp_dict = {}
         tmp_dict.update(parse.parse_qsl(parse.urlparse(query)[4]))
